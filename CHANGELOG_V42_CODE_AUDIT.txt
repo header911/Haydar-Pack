@@ -1,9 +1,0 @@
-V42 Code Audit & Safe Cleanup Preparation
-- مبني على V41 Stable UI Fix.
-- لا يوجد حذف لأي Feature.
-- لا يوجد تعديل على Apps Script.
-- تحديث cache/version إلى v42audit.
-- إضافة CODE_AUDIT_V42.md.
-- إضافة CLEANUP_MAP_V42.md.
-- إضافة AUDIT_V42_DATA.json للتفاصيل الفنية.
-- هدف النسخة: تجهيز التنظيف الآمن القادم بدون كسر البرنامج.
