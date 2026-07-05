@@ -17,7 +17,7 @@
 (function(){
   'use strict';
 
-  var VERSION='41-backup-center-simple-ui';
+  var VERSION='44.1.0-sync-version-fix';
   var LOCAL_KEY='hayder_bags_app';
   var META_KEY='hayder_pack_sync_meta_v37';
   var PENDING_KEY='hayder_pack_sync_pending_v37';
@@ -187,7 +187,7 @@
       var url=backendUrl(), iframeName='hp_v37_post_'+Date.now();
       var iframe=document.createElement('iframe');iframe.name=iframeName;iframe.style.display='none';
       var form=document.createElement('form');form.method='POST';form.action=url;form.target=iframeName;form.style.display='none';form.acceptCharset='UTF-8';
-      fields=fields||{};fields.action=action;fields.appVersion='43.0.0-clients-cleanup';fields.siteVersion='43clients';
+      fields=fields||{};fields.action=action;fields.appVersion='44.1.0-sync-version-fix';fields.siteVersion='44syncfix';
       Object.keys(fields).forEach(function(k){var t=document.createElement('textarea');t.name=k;t.value=String(fields[k]==null?'':fields[k]);form.appendChild(t)});
       document.body.appendChild(iframe);document.body.appendChild(form);form.submit();
       setTimeout(function(){try{form.remove();iframe.remove()}catch(e){}resolve({ok:true})},2300);
@@ -280,7 +280,7 @@
       if(!res||res.ok===false)throw new Error((res&&res.message)||'تعذر تأكيد الحفظ على Google');
       var h=(res.checksum||dataHash(res.data||{}));
       if(h===expectedHash)return res;
-      if(tries<3)return new Promise(function(resolve){setTimeout(resolve,1300)}).then(function(){return confirmUploaded(expectedHash,tries+1)});
+      if(tries<6)return new Promise(function(resolve){setTimeout(resolve,1800)}).then(function(){return confirmUploaded(expectedHash,tries+1)});
       return res;
     });
   }
@@ -288,10 +288,10 @@
     if(!p||!hasUsefulData(p.data)){clearPending();throw new Error('تم منع رفع نسخة فارغة إلى Google')}
     setSync('work','جاري تثبيت آخر تعديل محلي على Google تلقائيًا...');
     await postForm('replace',{baseRevision:0,force:'1',data:JSON.stringify(p.data),reason:'v37-auto-local-first'});
-    await new Promise(function(resolve){setTimeout(resolve,1800)});
+    await new Promise(function(resolve){setTimeout(resolve,2600)});
     var res=await confirmUploaded(p.hash,1);
     var h=(res.checksum||dataHash(res.data||{}));
-    if(h!==p.hash)throw new Error('لم يتم تأكيد رفع التعديل بعد — سيتم إعادة المحاولة تلقائيًا');
+    if(h!==p.hash)throw new Error('لم يصل تأكيد Google حتى الآن — التعديل محفوظ محليًا وسيعاد التأكيد تلقائيًا');
     applyRemote(res.data,res,'تم حفظ التعديل على Google تلقائيًا');
     return true;
   }
@@ -305,7 +305,7 @@
     try{
       setSync('work','جاري المزامنة التلقائية مع Google...');
       await postForm('save',{baseRevision:p.baseRevision||0,data:JSON.stringify(p.data),clientTime:now(),deviceId:deviceId()});
-      await new Promise(function(resolve){setTimeout(resolve,1600)});
+      await new Promise(function(resolve){setTimeout(resolve,2600)});
       var res=await confirmUploaded(p.hash,1);
       if(!res||res.ok===false)throw new Error((res&&res.message)||'تعذر تأكيد الحفظ');
       var remoteHash=(res.checksum||dataHash(res.data||{}));

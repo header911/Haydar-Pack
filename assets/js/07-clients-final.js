@@ -17,7 +17,7 @@
 */
 (function(){
   'use strict';
-  var VERSION='43.0.0-clients-cleanup';
+  var VERSION='44.1.0-sync-version-fix';
   var state={filter:'all',sort:'activity'};
 
   function $(id){return document.getElementById(id)}
