@@ -1,6 +1,6 @@
-/* Haydar Pack V44 consolidated bundle: 05-feature-patches.js
+/* Haydar Pack V45 cleanup bundle: 05-feature-patches.js
    Sources: 13-stage6-features.js, 14-v35-fixes.js, 15-v36-feature-integrity.js
-   Generated from V43 Clients Cleanup without logic changes. */
+   Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
 
 
@@ -167,7 +167,7 @@
     openDrawer('dr-settings'); renderDeleteLogArea();
   };
   window.hpStage6HardReload=function(){
-    var base=location.href.split('?')[0]; location.href=base+'?v=44syncfix&safeReload='+Date.now();
+    var base=location.href.split('?')[0]; location.href=base+'?v=45cleanup&safeReload='+Date.now();
   };
   if(!window.manualSyncNow){
     window.manualSyncNow=function(){

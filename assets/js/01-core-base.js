@@ -1,6 +1,6 @@
-/* Haydar Pack V44 consolidated bundle: 01-core-base.js
+/* Haydar Pack V45 cleanup bundle: 01-core-base.js
    Sources: 01-core.js, 02-pwa-register.js
-   Generated from V43 Clients Cleanup without logic changes. */
+   Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
 
 
@@ -1230,8 +1230,8 @@ function openOrderDetail(id){
 // ================= V8 DATA SAFETY + LOCAL GOOGLE DRIVE FOLDER BACKUP =================
 (function(){
   'use strict';
-  var HP_APP_VERSION='8.0.0';
-  var HP_SCHEMA_VERSION=8;
+  var HP_APP_VERSION='45.0.0-dead-code-cleanup';
+  var HP_SCHEMA_VERSION=10;
   var HP_LOCAL_KEY='hayder_bags_app';
   var HP_CURRENT_FILE='HayderPack_Current_Data.json';
   var HP_DAILY_PREFIX='HayderPack_Daily_';

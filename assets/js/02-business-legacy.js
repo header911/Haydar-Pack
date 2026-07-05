@@ -1,6 +1,6 @@
-/* Haydar Pack V44 consolidated bundle: 02-business-legacy.js
+/* Haydar Pack V45 cleanup bundle: 02-business-legacy.js
    Sources: 03-client-edit.js, 04-finance-capital-docs.js, 05-safe-import-boot.js, 06-delete-doclogo-sync.js, 07-doc-client-numbering.js, 08-doc-header-client-profit.js
-   Generated from V43 Clients Cleanup without logic changes. */
+   Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
 
 
@@ -140,7 +140,7 @@
   function ensureTopLogo(){
     try{
       var box=document.querySelector('.logo-icon');
-      if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=23" alt="Haydar Pack" onerror="this.src=\'icon-192.png?v=23\'">';}
+      if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=23" alt="Haydar Pack" onerror="this.src=\'hp-logo-v3-192.png?v=23\'">';}
       var link=document.querySelector('link[rel="icon"]'); if(link) link.href='hp-logo-v3-192.png?v=23';
       var apple=document.querySelector('link[rel="apple-touch-icon"]'); if(apple) apple.href='hp-logo-v3-192.png?v=23';
     }catch(e){console.error(e)}
@@ -400,7 +400,7 @@
     try{
       var box=document.querySelector('.logo-icon');
       if(box){
-        box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=24" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'icon-192.png?v=24\'">';
+        box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=24" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'hp-logo-v3-192.png?v=24\'">';
       }
     }catch(e){}
   }
@@ -581,7 +581,7 @@
   function fixTopLogo(){
     try{
       var box=document.querySelector('.logo-icon');
-      if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=25" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'icon-192.png?v=25\'">';}
+      if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v=25" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'hp-logo-v3-192.png?v=25\'">';}
       var fav=document.querySelector('link[rel="icon"]'); if(fav) fav.href='hp-logo-v3-192.png?v=25';
       var apple=document.querySelector('link[rel="apple-touch-icon"]'); if(apple) apple.href='hp-logo-v3-192.png?v=25';
     }catch(e){}
@@ -826,7 +826,7 @@
   function openDoc(html){var w=window.open('','_blank'); if(!w){try{toast('المتصفح منع فتح نافذة الطباعة. اسمح بالـ Popups وجرب تاني.')}catch(e){} return;} w.document.open(); w.document.write(html); w.document.close();}
   function meta(rows){return '<div class="hp-doc-meta">'+rows.map(function(r){return '<div><b>'+esc(r[0])+'</b><span>'+esc(r[1]||'')+'</span></div>'}).join('')+'</div>'}
   function docCss(){return '@page{size:A4 landscape;margin:8mm}*{box-sizing:border-box}body{font-family:Arial,Tahoma,sans-serif;color:#000;background:#fff;margin:0;font-size:10.5px}.sheet{width:100%;padding:1mm}.hp-doc-brand{direction:ltr;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:2px solid #0b2442;padding-bottom:6px;margin-bottom:8px;width:100%;gap:16px}.hp-brand-en{direction:ltr;text-align:left;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;min-width:310px;flex:0 0 auto}.hp-brand-ar{direction:ltr;text-align:right;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;gap:10px;min-width:310px;flex:0 0 auto}.hp-brand-en img,.hp-brand-ar img{width:74px;height:74px;object-fit:contain;flex:0 0 auto}.hp-ar-copy{direction:rtl;text-align:right}.hp-en-title{font-size:27px;line-height:1;font-weight:900;color:#0b2442;letter-spacing:.2px}.hp-en-sub{font-size:11px;font-weight:900;color:#111;margin-top:7px;white-space:nowrap}.hp-ar-title{font-size:29px;line-height:1;font-weight:900;color:#ad7b25}.hp-ar-sub{font-size:12px;font-weight:900;color:#111;margin-top:7px;white-space:nowrap}.doc-title{text-align:center;font-size:20px;font-weight:900;text-decoration:underline;margin:4px 0 9px}.hp-doc-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px 18px;margin-bottom:10px}.hp-doc-meta div{display:flex;justify-content:space-between;border-bottom:1px dotted #777;padding:3px 0}.hp-doc-meta b{min-width:78px}.main-table,.totals,.extra-table{width:100%;border-collapse:collapse;table-layout:auto}th,td{border:1.2px solid #000;padding:4px 3px;text-align:center;vertical-align:middle;white-space:normal}th{background:#d9d9d9;font-weight:900}.totals{width:330px;margin-top:8px;margin-right:auto}.totals td{font-weight:900}.section-title{font-size:13px;font-weight:900;margin:12px 0 5px;text-decoration:underline}.terms,.note{font-size:11px;font-weight:900;line-height:1.6;margin-top:8mm;text-align:right}.foot{position:fixed;bottom:5mm;left:8mm;right:8mm;font-size:9px;display:flex;justify-content:space-between;border-top:1px solid #000;padding-top:3px}.no-print{position:fixed;top:6px;left:6px;display:flex;gap:6px;z-index:10}.no-print button{font-size:13px;padding:8px 12px;border:2px solid #000;background:#fff;font-weight:900}@media print{.no-print{display:none}.sheet{padding:0}}'}
-  function docHeader(){return '<div class="hp-doc-brand"><div class="hp-brand-en"><img src="'+LOGO+'" onerror="this.onerror=null;this.src=\'icon-192.png?v='+VER+'\'"><div><div class="hp-en-title">Haydarpack</div><div class="hp-en-sub">Eco-friendly bags &amp; printed packaging</div></div></div><div class="hp-brand-ar"><div class="hp-ar-copy"><div class="hp-ar-title">حيدر باك</div><div class="hp-ar-sub">شنط قماش غير منسوجة صديقة للبيئة</div></div><img src="'+LOGO+'" onerror="this.onerror=null;this.src=\'icon-192.png?v='+VER+'\'"></div></div>'}
+  function docHeader(){return '<div class="hp-doc-brand"><div class="hp-brand-en"><img src="'+LOGO+'" onerror="this.onerror=null;this.src=\'hp-logo-v3-192.png?v='+VER+'\'"><div><div class="hp-en-title">Haydarpack</div><div class="hp-en-sub">Eco-friendly bags &amp; printed packaging</div></div></div><div class="hp-brand-ar"><div class="hp-ar-copy"><div class="hp-ar-title">حيدر باك</div><div class="hp-ar-sub">شنط قماش غير منسوجة صديقة للبيئة</div></div><img src="'+LOGO+'" onerror="this.onerror=null;this.src=\'hp-logo-v3-192.png?v='+VER+'\'"></div></div>'}
   function docHtml(title,no,metaHtml,head,body,totals,extra){return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>'+esc(no+' - '+title+' - Haydar Pack')+'</title><style>'+docCss()+'</style></head><body><div class="no-print"><button onclick="window.print()">طباعة / حفظ PDF</button><button onclick="window.close()">إغلاق</button></div><div class="sheet">'+docHeader()+'<div class="doc-title">'+esc(title)+'</div>'+metaHtml+'<table class="main-table"><thead>'+head+'</thead><tbody>'+body+'</tbody></table>'+totals+(extra||'')+'</div><div class="foot"><span>Haydar Pack</span><span>'+esc(no)+'</span><span>Generated: '+esc(today())+'</span></div><script>setTimeout(function(){try{window.print()}catch(e){}},450);<\/script></body></html>'}
   function clientRows(orders,mode){var body='',gross=0,disc=0,net=0;orders.forEach(function(o){var q=bill(o,mode),price=n(o.price),bag=q*price,ak=n(o.aklashe),g=bag+ak,d=discount(o),after=Math.max(0,g-d);gross+=g;disc+=d;net+=after;body+='<tr><td>'+esc(o.code||'')+'</td><td>'+esc(itemName(o))+'</td><td>'+esc(o.type||'')+'</td><td>'+esc(o.color||'')+'</td><td>'+esc(o.handle||'بدون')+'</td><td>'+esc(o.colorCount||o.colorsCount||o.printColors||'1')+'</td><td>'+esc(o.face||o.printFace||'وجه واحد')+'</td><td>'+count(q)+'</td><td>'+money(price)+'</td><td>'+money(bag)+'</td></tr>';if(ak>0)body+='<tr><td>'+esc(o.code||'')+'</td><td>اكلاشيه</td><td>اكلاشيه</td><td>بدون</td><td>بدون</td><td>-</td><td>-</td><td>1</td><td>'+money(ak)+'</td><td>'+money(ak)+'</td></tr>'});return{body:body,gross:gross,disc:disc,net:net}}
   function printClientDoc(cid,mode){var orders=clientOrders(cid); if(!orders.length){try{toast('لا توجد أوردرات للعميل')}catch(e){} return;} var c=getClient(cid),no=docNo(mode==='quote'?'QT':'INV'),r=clientRows(orders,mode),dep=orders.reduce(function(s,o){return s+n(o.deposit)},0),head='<tr><th>كود الأوردر</th><th>اسم الصنف</th><th>نوع الشنطة</th><th>لون الشنطة</th><th>لون اليد</th><th>عدد الألوان</th><th>وجه</th><th>الكمية</th><th>سعر الشنطة</th><th>القيمة</th></tr>',tot='<table class="totals"><tr><td>الإجمالي قبل الخصم</td><td>'+money(r.gross)+'</td></tr><tr><td>خصم الفاتورة</td><td>'+money(r.disc)+'</td></tr><tr><td>الإجمالي بعد الخصم</td><td>'+money(r.net)+'</td></tr>'+(mode==='invoice'?'<tr><td>العربون المسجل</td><td>'+money(dep)+'</td></tr><tr><td>الصافي المستحق</td><td>'+money(Math.max(0,r.net-dep))+'</td></tr>':'')+'</table>',extra=mode==='quote'?'<div class="terms"><b>ملاحظات عرض السعر:</b><br>برجاء مراجعة المقاسات والألوان والكمية والأسعار جيدًا<br>قد يصل معدل العجز أو الزيادة إلى نسبة 3%<br>مدة تسليم الأوردر من 10 إلى 15 يوم من تاريخ دفع العربون<br>يتم التشغيل بعد دفع 50% عربون من قيمة عرض السعر</div>':''; openDoc(docHtml(mode==='quote'?'عرض سعر':'فاتورة بيع',no,meta([['التاريخ',today()],['رقم المستند',no],['العميل',c.name],['رقم الهاتف',c.phone],['العنوان',c.addr]]),head,r.body,tot,extra));}
@@ -842,7 +842,7 @@
   function hpApplyClientNumbersToOrderSelect(){try{var el=byId('o-client'); if(!el||!window.DB||!DB.clients)return; var current=el.value||''; el.innerHTML='<option value="">— اختر عميل —</option>'+DB.clients.map(function(c,i){return '<option value="'+esc(c.id)+'">'+esc(hpClientOptionLabel(c,i))+'</option>'}).join(''); if(current) el.value=current;}catch(e){}}
   try{var hpOldFillOrderSelects=window.fillOrderSelects; window.fillOrderSelects=function(){if(typeof hpOldFillOrderSelects==='function')hpOldFillOrderSelects(); hpApplyClientNumbersToOrderSelect();};}catch(e){}
 
-  try{var box=document.querySelector('.logo-icon'); if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v='+VER+'" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'icon-192.png?v='+VER+'\'">';}}catch(e){}
+  try{var box=document.querySelector('.logo-icon'); if(box){box.innerHTML='<img class="hp-app-logo" src="hp-logo-v3-192.png?v='+VER+'" alt="Haydar Pack" onerror="this.onerror=null;this.src=\'hp-logo-v3-192.png?v='+VER+'\'">';}}catch(e){}
 })();
 
 
