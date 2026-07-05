@@ -1,0 +1,1268 @@
+{
+  "version": "V42 Code Audit & Safe Cleanup Preparation",
+  "base": "V41 Stable UI Fix",
+  "generated_at": "2026-07-05T19:35:00+03:00",
+  "total_files": 48,
+  "total_bytes": 1057683,
+  "js_files": 20,
+  "js_bytes": 821937,
+  "top_files": [
+    {
+      "path": "assets/js/01-core.js",
+      "bytes": 552588,
+      "sha256_12": "a82fedc2b036",
+      "type": "js"
+    },
+    {
+      "path": "hp-logo-v3-512.png",
+      "bytes": 48670,
+      "sha256_12": "637640a82715",
+      "type": "png"
+    },
+    {
+      "path": "icon-512.png",
+      "bytes": 48670,
+      "sha256_12": "637640a82715",
+      "type": "png"
+    },
+    {
+      "path": "assets/css/styles.css",
+      "bytes": 39552,
+      "sha256_12": "5aded40d83a6",
+      "type": "css"
+    },
+    {
+      "path": "assets/js/12-sync-import.js",
+      "bytes": 30157,
+      "sha256_12": "53927a21bf4b",
+      "type": "js"
+    },
+    {
+      "path": "hp-logo-v3-192.png",
+      "bytes": 29610,
+      "sha256_12": "f2804eebdac6",
+      "type": "png"
+    },
+    {
+      "path": "icon-192.png",
+      "bytes": 29610,
+      "sha256_12": "f2804eebdac6",
+      "type": "png"
+    },
+    {
+      "path": "index.html",
+      "bytes": 25928,
+      "sha256_12": "daf53ff7a58d",
+      "type": "html"
+    },
+    {
+      "path": "assets/js/18-v41-backup-center-simple-ui.js",
+      "bytes": 23581,
+      "sha256_12": "d2f577a2e67a",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/14-v35-fixes.js",
+      "bytes": 21463,
+      "sha256_12": "a1edc29618f7",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/08-doc-header-client-profit.js",
+      "bytes": 20786,
+      "sha256_12": "3a3efc18770d",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/04-finance-capital-docs.js",
+      "bytes": 20658,
+      "sha256_12": "cb793b87ad46",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/13-stage6-features.js",
+      "bytes": 19832,
+      "sha256_12": "cb38b8d43971",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/06-delete-doclogo-sync.js",
+      "bytes": 19630,
+      "sha256_12": "7e0e29017a11",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/17-v40-image-separation.js",
+      "bytes": 18010,
+      "sha256_12": "5bc0cdf31114",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/15-v36-feature-integrity.js",
+      "bytes": 17959,
+      "sha256_12": "5cece3105eea",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/07-doc-client-numbering.js",
+      "bytes": 16470,
+      "sha256_12": "952cb1b98fa0",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/11-printing.js",
+      "bytes": 15425,
+      "sha256_12": "8671488f7f10",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/16-v39-data-protection-lock.js",
+      "bytes": 14731,
+      "sha256_12": "75389650ec62",
+      "type": "js"
+    },
+    {
+      "path": "assets/js/05-safe-import-boot.js",
+      "bytes": 11721,
+      "sha256_12": "d5253fed3a04",
+      "type": "js"
+    }
+  ],
+  "key_definitions": {
+    "renderClients": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 173,
+        "text": "function renderClients(){ var q=(g('q-clients')?g('q-clients').value:'').toLowerCase(); var clients=DB.clients.filter(function(c){return !q||String(c.name).toLo"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1604,
+        "text": "renderClients=function(){"
+      },
+      {
+        "file": "assets/js/07-doc-client-numbering.js",
+        "line": 36,
+        "text": "window.renderClients=function(){var q=(byId('q-clients')?byId('q-clients').value:'').toLowerCase(),clients=(DB.clients||[]).filter(function(c){return !q||String"
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 186,
+        "text": "window.renderClients=function(){"
+      },
+      {
+        "file": "assets/js/15-v36-feature-integrity.js",
+        "line": 87,
+        "text": "window.renderClients=function(){"
+      }
+    ],
+    "openClientDetail": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 185,
+        "text": "function openClientDetail(cid){ var c=DB.clients.find(function(x){return x.id===cid}); if(!c)return; var orders=DB.orders.filter(function(o){return o.clientId=="
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 885,
+        "text": "openClientDetail=function(cid){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1083,
+        "text": "openClientDetail=function(cid){ oldOpenClientDetailV6(cid); try{ ensureEntityCodes(); var c=getClient(cid); var body=$id('client-detail-body'); if(body && body."
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1193,
+        "text": "openClientDetail=function(cid){oldOpenClientDetailV7(cid);try{var bar=document.querySelector('#client-detail-body .doc-action-bar');if(bar&&bar.innerHTML.indexO"
+      },
+      {
+        "file": "assets/js/03-client-edit.js",
+        "line": 87,
+        "text": "window.openClientDetail=function(cid){"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 73,
+        "text": "window.openClientDetail=function(cid){"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 41,
+        "text": "window.openClientDetail=function(cid){var c=getClient(cid); if(!c||!c.id){return;} var orders=(DB.orders||[]).filter(function(o){return o.clientId===cid}).sort("
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 222,
+        "text": "window.openClientDetail=function(cid){"
+      },
+      {
+        "file": "assets/js/15-v36-feature-integrity.js",
+        "line": 114,
+        "text": "window.openClientDetail=function(cid){"
+      }
+    ],
+    "openClientForm": [
+      {
+        "file": "assets/js/03-client-edit.js",
+        "line": 25,
+        "text": "window.openClientForm=function(cid){"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 80,
+        "text": "window.openClientForm=function(cid){"
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 228,
+        "text": "window.openClientForm=function(cid){"
+      },
+      {
+        "file": "assets/js/15-v36-feature-integrity.js",
+        "line": 132,
+        "text": "window.openClientForm=function(cid){"
+      }
+    ],
+    "deleteClient": [
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 49,
+        "text": "window.deleteClient=function(cid){"
+      },
+      {
+        "file": "assets/js/10-calculations.js",
+        "line": 83,
+        "text": "window.deleteClient=function(cid){"
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 116,
+        "text": "window.deleteClient=function(cid){"
+      },
+      {
+        "file": "assets/js/15-v36-feature-integrity.js",
+        "line": 48,
+        "text": "window.deleteClient=function(cid){"
+      }
+    ],
+    "deleteOrder": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 101,
+        "text": "function deleteOrder(id){"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 38,
+        "text": "window.deleteOrder=function(id){"
+      },
+      {
+        "file": "assets/js/10-calculations.js",
+        "line": 70,
+        "text": "window.deleteOrder=function(id){"
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 104,
+        "text": "window.deleteOrder=function(id){"
+      },
+      {
+        "file": "assets/js/15-v36-feature-integrity.js",
+        "line": 36,
+        "text": "window.deleteOrder=function(id){"
+      }
+    ],
+    "saveOrder": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 96,
+        "text": "function saveOrder(){ var cid=g('o-client').value, fid=g('o-factory').value; if(!cid){toast('اختر العميل');return} if(!fid){toast('اختر المصنع');return} var id="
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 320,
+        "text": "function saveOrder(){ var cid=g('o-client').value, fid=g('o-factory').value; if(!cid){toast('اختر العميل');return} if(!fid){toast('اختر المصنع');return} var id="
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 387,
+        "text": "function saveOrder(){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 786,
+        "text": "saveOrder=function(){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1043,
+        "text": "saveOrder=function(){"
+      },
+      {
+        "file": "assets/js/04-finance-capital-docs.js",
+        "line": 99,
+        "text": "window.saveOrder=function(){"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 53,
+        "text": "window.saveOrder=function(){"
+      }
+    ],
+    "renderOrders": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 165,
+        "text": "function renderOrders(){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 331,
+        "text": "function renderOrders(){"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 88,
+        "text": "window.renderOrders=function(){"
+      }
+    ],
+    "renderReports": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 177,
+        "text": "function renderReports(){ periodChips('rep-periods',repPeriod,'setRepPeriod'); buildMonthTabs('rep-months',selRepMonth,'selectRepMonth'); var t=periodTotals(rep"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 343,
+        "text": "function renderReports(){ periodChips('rep-periods',repPeriod,'setRepPeriod'); buildMonthTabs('rep-months',selRepMonth,'selectRepMonth'); var t=periodTotals(rep"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 598,
+        "text": "renderReports=function(){ oldRenderReports(); var stats=g('rep-stats'); if(stats){ var c=capSummary(); stats.innerHTML += '<div class=\"stat-box blue\"><div class"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 700,
+        "text": "renderReports=function(){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1205,
+        "text": "renderReports=function(){oldRenderReportsV7();try{var m=selRepMonth||curMonth(),pm=monthAdd(m,-1),cur=monthData(m),prev=monthData(pm),profitPct=pct(cur.profit,p"
+      },
+      {
+        "file": "assets/js/04-finance-capital-docs.js",
+        "line": 231,
+        "text": "window.renderReports=function(){ if(oldRenderReports) oldRenderReports.apply(this,arguments); injectLoanDetails(); };"
+      },
+      {
+        "file": "assets/js/13-stage6-features.js",
+        "line": 242,
+        "text": "window.renderReports=function(){"
+      }
+    ],
+    "openSync": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1367,
+        "text": "window.openSync=function(){hpUpdateSafetyUI();runDataHealthCheckUI();openDrawer('dr-sync')};"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1556,
+        "text": "window.openSync=function(){hpCloudUpdateUI();if(typeof runDataHealthCheckUI==='function')runDataHealthCheckUI();openDrawer('dr-sync')};"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1811,
+        "text": "window.openSync=function(){"
+      },
+      {
+        "file": "assets/js/05-safe-import-boot.js",
+        "line": 170,
+        "text": "window.openSync=function(){"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 186,
+        "text": "window.openSync=function(){var r=baseOpenSync?baseOpenSync.apply(this,arguments):undefined; setTimeout(function(){addSyncPanel(); fixTopLogo();},0); return r;};"
+      },
+      {
+        "file": "assets/js/12-sync-import.js",
+        "line": 432,
+        "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){ensureSyncPanel();updateUI();onePage()},0);return"
+      },
+      {
+        "file": "assets/js/16-v39-data-protection-lock.js",
+        "line": 212,
+        "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){injectGuardPanel();updateGuardUI()},100);return r"
+      },
+      {
+        "file": "assets/js/17-v40-image-separation.js",
+        "line": 73,
+        "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){injectPanel();updateImagePanel()},150);return r};"
+      },
+      {
+        "file": "assets/js/18-v41-backup-center-simple-ui.js",
+        "line": 266,
+        "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){ensureSimplePanel();hideLegacySyncUI();loadBackup"
+      }
+    ],
+    "save": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 59,
+        "text": "function save(skipSync){ try{localStorage.setItem('hayder_bags_app',JSON.stringify(DB))}catch(e){toast('تعذر حفظ البيانات محلياً')} if(!skipSync) scheduleSync()"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 285,
+        "text": "function save(skipSync){ try{ reduceDBForStorage(); localStorage.setItem('hayder_bags_app',JSON.stringify(DB)); }catch(e){ console.error(e); toast('تعذر الحفظ: "
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 574,
+        "text": "save=function(skipSync){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1354,
+        "text": "save=function(skipBackup){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1509,
+        "text": "save=function(){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1837,
+        "text": "save=function(){"
+      },
+      {
+        "file": "assets/js/12-sync-import.js",
+        "line": 442,
+        "text": "window.save=save=function(skipSync){"
+      },
+      {
+        "file": "assets/js/16-v39-data-protection-lock.js",
+        "line": 170,
+        "text": "window.save=function(){"
+      },
+      {
+        "file": "assets/js/17-v40-image-separation.js",
+        "line": 50,
+        "text": "window.save=function(){try{migrateImagesInDB('before-save')}catch(e){}return oldSave.apply(this,arguments)};"
+      }
+    ],
+    "manualSync": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1557,
+        "text": "window.connectDrive=function(){window.openSync()};window.manualSync=function(){hpCloudFlushSave()};window.loadFromDrive=function(){window.refreshCloudData(true)"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1834,
+        "text": "window.manualSync=function(){hpPwaFlush()};"
+      },
+      {
+        "file": "assets/js/12-sync-import.js",
+        "line": 435,
+        "text": "window.manualSync=function(){return pushPending(true)};"
+      },
+      {
+        "file": "assets/js/16-v39-data-protection-lock.js",
+        "line": 164,
+        "text": "window.manualSync=function(){if(!protectLocalBeforeUpload())return false;return oldManual?oldManual.apply(this,arguments):false};"
+      }
+    ],
+    "loadFromDrive": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1557,
+        "text": "window.connectDrive=function(){window.openSync()};window.manualSync=function(){hpCloudFlushSave()};window.loadFromDrive=function(){window.refreshCloudData(true)"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1833,
+        "text": "window.loadFromDrive=function(){hpPwaPull(true)};"
+      },
+      {
+        "file": "assets/js/12-sync-import.js",
+        "line": 434,
+        "text": "window.loadFromDrive=function(){return window.refreshCloudData(true)};"
+      },
+      {
+        "file": "assets/js/16-v39-data-protection-lock.js",
+        "line": 161,
+        "text": "window.loadFromDrive=function(){return window.refreshCloudData(true)};"
+      }
+    ],
+    "printSelectedClientInvoice": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 866,
+        "text": "window.printSelectedClientInvoice=function(cid){ printClientDoc(cid,'invoice'); };"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1079,
+        "text": "window.printSelectedClientInvoice=function(cid){ var c=getClient(cid), orders=selectedClientOrders(cid); if(!orders.length){toast('حدد أوردر واحد على الأقل');re"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1163,
+        "text": "window.printSelectedClientInvoice=function(cid){printClientDoc2(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/04-finance-capital-docs.js",
+        "line": 162,
+        "text": "window.printSelectedClientInvoice=function(cid){printClientDoc(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 142,
+        "text": "window.printSelectedClientInvoice=function(cid){printClientDoc(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/07-doc-client-numbering.js",
+        "line": 32,
+        "text": "window.printSelectedClientInvoice=function(cid){printClientDoc(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 38,
+        "text": "window.printSelectedClientInvoice=function(cid){printClientDoc(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/11-printing.js",
+        "line": 37,
+        "text": "window.printSelectedClientInvoice=function(cid){clientDocument(cid,'invoice')};"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 125,
+        "text": "window.printSelectedClientInvoice=function(cid){clientDocument(cid,'invoice')};"
+      }
+    ],
+    "printSelectedClientQuote": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 865,
+        "text": "window.printSelectedClientQuote=function(cid){ printClientDoc(cid,'quote'); };"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1078,
+        "text": "window.printSelectedClientQuote=function(cid){ var c=getClient(cid), orders=selectedClientOrders(cid); if(!orders.length){toast('حدد أوردر واحد على الأقل');retu"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1162,
+        "text": "window.printSelectedClientQuote=function(cid){printClientDoc2(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/04-finance-capital-docs.js",
+        "line": 161,
+        "text": "window.printSelectedClientQuote=function(cid){printClientDoc(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 141,
+        "text": "window.printSelectedClientQuote=function(cid){printClientDoc(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/07-doc-client-numbering.js",
+        "line": 31,
+        "text": "window.printSelectedClientQuote=function(cid){printClientDoc(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 37,
+        "text": "window.printSelectedClientQuote=function(cid){printClientDoc(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/11-printing.js",
+        "line": 36,
+        "text": "window.printSelectedClientQuote=function(cid){clientDocument(cid,'quote')};"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 124,
+        "text": "window.printSelectedClientQuote=function(cid){clientDocument(cid,'quote')};"
+      }
+    ],
+    "printSelectedClientStatement": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1164,
+        "text": "window.printSelectedClientStatement=function(cid){"
+      },
+      {
+        "file": "assets/js/07-doc-client-numbering.js",
+        "line": 33,
+        "text": "window.printSelectedClientStatement=function(cid){printClientStatement(cid)};"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 39,
+        "text": "window.printSelectedClientStatement=function(cid){printClientStatement(cid)};"
+      },
+      {
+        "file": "assets/js/11-printing.js",
+        "line": 38,
+        "text": "window.printSelectedClientStatement=function(cid){clientStatement(cid)};"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 126,
+        "text": "window.printSelectedClientStatement=function(cid){clientStatement(cid)};"
+      }
+    ],
+    "printSelectedFactoryStatement": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 874,
+        "text": "window.printSelectedFactoryStatement=function(fid){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1080,
+        "text": "window.printSelectedFactoryStatement=function(fid){ var f=getFactory(fid), orders=selectedFactoryOrders(fid); if(!orders.length) orders=factoryOrdersFiltered(fi"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1180,
+        "text": "window.printSelectedFactoryStatement=function(fid){"
+      },
+      {
+        "file": "assets/js/07-doc-client-numbering.js",
+        "line": 34,
+        "text": "window.printSelectedFactoryStatement=function(fid){printFactoryStatement(fid)};"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 40,
+        "text": "window.printSelectedFactoryStatement=function(fid){printFactoryStatement(fid)};"
+      },
+      {
+        "file": "assets/js/11-printing.js",
+        "line": 39,
+        "text": "window.printSelectedFactoryStatement=function(fid){factoryStatement(fid)};"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 127,
+        "text": "window.printSelectedFactoryStatement=function(fid){factoryStatement(fid)};"
+      }
+    ],
+    "docHtml": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1072,
+        "text": "function docHtml(title,meta,head,body,total,footer){"
+      },
+      {
+        "file": "assets/js/04-finance-capital-docs.js",
+        "line": 149,
+        "text": "function docHtml(title,docNo,client,head,body,totals,extra){"
+      },
+      {
+        "file": "assets/js/06-delete-doclogo-sync.js",
+        "line": 129,
+        "text": "function docHtml(title,docNo,client,head,body,totals,extra){"
+      },
+      {
+        "file": "assets/js/08-doc-header-client-profit.js",
+        "line": 32,
+        "text": "function docHtml(title,no,metaHtml,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+ti"
+      }
+    ],
+    "baseDoc": [
+      {
+        "file": "assets/js/11-printing.js",
+        "line": 28,
+        "text": "function baseDoc(title,no,meta,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+"
+      },
+      {
+        "file": "assets/js/14-v35-fixes.js",
+        "line": 116,
+        "text": "function baseDoc(title,no,meta,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+"
+      }
+    ],
+    "refreshCloudData": [
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1537,
+        "text": "window.refreshCloudData=function(showMessage){"
+      },
+      {
+        "file": "assets/js/01-core.js",
+        "line": 1827,
+        "text": "window.refreshCloudData=function(show){hpPwaPull(show)};"
+      },
+      {
+        "file": "assets/js/12-sync-import.js",
+        "line": 433,
+        "text": "window.refreshCloudData=function(show){return pendingData()?pushPending(!!show):pull(!!show)};"
+      }
+    ]
+  },
+  "async_watchers": [
+    {
+      "file": "assets/js/01-core.js",
+      "line": 26,
+      "text": "function toast(msg){ var t=g('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(function(){ t.classList.remove('show') },2200) }"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 124,
+      "text": "function savePayment(){ var amt=num(g('pay-amt').value), cid=g('pay-cid').value; if(!amt){toast('أدخل المبلغ');return} DB.payments.push({id:uid(),clientId:cid,amount:amt,date:g('pa"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 201,
+      "text": "function downloadBlob(blob,fileName){ var url=URL.createObjectURL(blob); var a=document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click()"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 261,
+      "text": "function showSafeError(msg){ var r=document.getElementById('panic-root'); if(!r) return; r.innerHTML='<div class=\"panic-box\">'+safe(msg||'حدث خطأ وتم احتواؤه')+'</div>'; setTimeout"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 849,
+      "text": "'</style></head><body><div class=\"no-print\"><button onclick=\"window.print()\">طباعة / حفظ PDF</button><button onclick=\"window.close()\">إغلاق</button></div><div class=\"sheet\"><div cl"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1073,
+      "text": "return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+safeTxt(title)+'</title><style>@page{size:A4 landscape;margin:8mm}*{box-sizing:border-box}body"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1106,
+      "text": "var buf=await wb.xlsx.writeBuffer(); var blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}); var a=document.createElement('a'); a.href="
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1154,
+      "text": "return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+txt(docNo+' - '+title+' - Haydarpack')+'</title><style>@page{size:A4 '+(landscape?'landscape':"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1215,
+      "text": "async function exportOrdersDocExcelV7(orders,mode){if(typeof ExcelJS==='undefined'){toast('مكتبة Excel لم تحمل بعد. افتح الإنترنت أو استخدم طباعة PDF.');return}var docNo=nextDocNo("
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1218,
+      "text": "var oldLoadV7=load;load=function(){try{oldLoadV7()}catch(e){console.error(e);if(typeof showSafeError==='function')showSafeError('تم منع خطأ أثناء فتح البرنامج.')}try{renderReports("
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1316,
+      "text": "function hpScheduleSnapshot(json,reason){clearTimeout(hpSnapshotTimer);hpSnapshotTimer=setTimeout(function(){hpStoreSnapshotJson(json,reason||'auto')},500)}"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1349,
+      "text": "finally{hpBackupWriting=false;if(hpPendingBackup){hpPendingBackup=false;setTimeout(function(){hpWriteFolderBackup(false,false)},300)}}"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1351,
+      "text": "function hpScheduleFolderBackup(){clearTimeout(hpBackupTimer);hpSetStatus('work',hpBackupDirHandle?'في انتظار تحديث نسخة Google Drive...':'تم الحفظ محلياً — النسخ الخارجية غير مفعل"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1374,
+      "text": "window.downloadManualBackup=function(){try{var report=hpValidateDatabase(DB),prefix=report.ok?HP_MANUAL_PREFIX:'HayderPack_EMERGENCY_INVALID_',text=JSON.stringify(hpEnvelope(DB),nu"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1461,
+      "text": "hpCloudOfflineTimer=setTimeout(function(){off.classList.remove('show')},3600);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1516,
+      "text": "hpCloudPending=true;hpCloudSetState('work','جاري تجهيز الحفظ على Google...');clearTimeout(hpCloudSaveTimer);hpCloudSaveTimer=setTimeout(hpCloudFlushSave,650);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1533,
+      "text": "if(hpCloudPending)setTimeout(hpCloudFlushSave,800);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1534,
+      "text": "}).withFailureHandler(function(err){hpCloudSaving=false;hpCloudPending=true;hpCloudSetState('err',(err&&err.message)||'تعذر الحفظ على Google');setTimeout(function(){if(navigator.on"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1565,
+      "text": "clearInterval(hpCloudRefreshTimer);hpCloudRefreshTimer=setInterval(hpCloudCheckMeta,30000);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1648,
+      "text": "setTimeout(function(){hpEnsureBackBar(id)},0);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1709,
+      "text": "window.__hpPwaNoticeTimer=setTimeout(function(){off.classList.remove('show')},3600);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1752,
+      "text": "var timer=setTimeout(function(){if(!done){cleanup();reject(new Error('لم يصل رد من Apps Script. حدّث ملف Code.gs في Apps Script ثم اعمل Deploy New version، وتأكد أن الرابط ينتهي بـ"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1767,
+      "text": "setTimeout(function(){try{form.remove();iframe.remove();}catch(e){} resolve({ok:true});},1800);"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1776,
+      "text": "function hpPwaScheduleSync(){clearTimeout(HP_PWA_SYNC_TIMER); HP_PWA_SYNC_TIMER=setTimeout(hpPwaFlush,700);}"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1785,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1813,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/01-core.js",
+      "line": 1851,
+      "text": "clearInterval(HP_PWA_CHECK_TIMER); HP_PWA_CHECK_TIMER=setInterval(hpPwaCheckMeta,30000);"
+    },
+    {
+      "file": "assets/js/02-pwa-register.js",
+      "line": 29,
+      "text": "if(!id){ hpApplyDefaultBagColor(true); setTimeout(function(){hpApplyDefaultBagColor(true)},50); }"
+    },
+    {
+      "file": "assets/js/03-client-edit.js",
+      "line": 78,
+      "text": "if(id){setTimeout(function(){openClientDetail(id)},120);}"
+    },
+    {
+      "file": "assets/js/03-client-edit.js",
+      "line": 89,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/04-finance-capital-docs.js",
+      "line": 114,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/04-finance-capital-docs.js",
+      "line": 150,
+      "text": "return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+txt(docNo+' - '+title+' - Haydar Pack')+'</title><style>@page{size:A4 landscape;margin:8mm}*{b"
+    },
+    {
+      "file": "assets/js/04-finance-capital-docs.js",
+      "line": 196,
+      "text": "a.href=URL.createObjectURL(blob); a.download=filename||((mode==='quote'?'عرض_سعر':'فاتورة')+'_'+docNo+'.xlsx'); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href)},1000);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 70,
+      "text": "timer=setTimeout(function(){if(!done){cleanup();reject(new Error('لم يصل رد من Apps Script'))}},timeoutMs||30000);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 84,
+      "text": "setTimeout(function(){try{form.remove();iframe.remove();}catch(e){} resolve({ok:true});},2200);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 131,
+      "text": "hpV24SetState('work','جاري تأكيد الاستيراد على Google...');setTimeout(function(){hpV24WaitForImport(expectedCounts,startedRevision,attempt+1)},1600);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 134,
+      "text": "if(attempt<8){setTimeout(function(){hpV24WaitForImport(expectedCounts,startedRevision,attempt+1)},2000);}"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 156,
+      "text": "setTimeout(function(){hpV24WaitForImport(counts,startedRevision,1)},1800);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 172,
+      "text": "setTimeout(function(){hpV24UpdateSyncInput();hpV24FixLogo();hpV24OneActivePage();},0);"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 175,
+      "text": "window.addEventListener('error',function(){setTimeout(hpV24HideLoading,500)});"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 176,
+      "text": "window.addEventListener('unhandledrejection',function(){setTimeout(hpV24HideLoading,500)});"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 177,
+      "text": "window.addEventListener('load',function(){setTimeout(function(){hpV24HideLoading();hpV24OneActivePage();hpV24FixLogo();},2500)});"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 178,
+      "text": "document.addEventListener('DOMContentLoaded',function(){hpV24BackendUrl();hpV24FixLogo();hpV24OneActivePage();setTimeout(hpV24HideLoading,6500);});"
+    },
+    {
+      "file": "assets/js/05-safe-import-boot.js",
+      "line": 179,
+      "text": "setTimeout(function(){hpV24HideLoading();hpV24OneActivePage();hpV24FixLogo();},9000);"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 75,
+      "text": "setTimeout(function(){addClientDeleteButton(cid)},0);"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 82,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 102,
+      "text": "setTimeout(function(){addOrderDeleteButton(id)},0);"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 130,
+      "text": "return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(docNo+' - '+title+' - Haydar Pack')+'</title><style>@page{size:A4 landscape;margin:8mm}*{b"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 172,
+      "text": "a.href=URL.createObjectURL(blob); a.download=filename||((mode==='quote'?'عرض_سعر':'فاتورة')+'_'+docNo+'.xlsx'); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href)},1000);"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 186,
+      "text": "window.openSync=function(){var r=baseOpenSync?baseOpenSync.apply(this,arguments):undefined; setTimeout(function(){addSyncPanel(); fixTopLogo();},0); return r;};"
+    },
+    {
+      "file": "assets/js/06-delete-doclogo-sync.js",
+      "line": 189,
+      "text": "document.addEventListener('DOMContentLoaded',function(){fixTopLogo(); setTimeout(fixTopLogo,400)});"
+    },
+    {
+      "file": "assets/js/07-doc-client-numbering.js",
+      "line": 25,
+      "text": "function base(title,no,metaHtml,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+' - Haydar Pack')+'"
+    },
+    {
+      "file": "assets/js/08-doc-header-client-profit.js",
+      "line": 32,
+      "text": "function docHtml(title,no,metaHtml,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+' - Haydar Pack'"
+    },
+    {
+      "file": "assets/js/09-boot-guard.js",
+      "line": 33,
+      "text": "setTimeout(enforceSingleActivePage,800);"
+    },
+    {
+      "file": "assets/js/09-boot-guard.js",
+      "line": 34,
+      "text": "setTimeout(enforceSingleActivePage,2500);"
+    },
+    {
+      "file": "assets/js/09-boot-guard.js",
+      "line": 35,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/10-calculations.js",
+      "line": 108,
+      "text": "setTimeout(function(){try{if(typeof refreshAll==='function')refreshAll()}catch(e){}},600);"
+    },
+    {
+      "file": "assets/js/11-printing.js",
+      "line": 28,
+      "text": "function baseDoc(title,no,meta,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+' - Haydar Pack')+'<"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 141,
+      "text": "off.classList.add('show');clearTimeout(offlineTimer);offlineTimer=setTimeout(function(){off.classList.remove('show')},4200);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 173,
+      "text": "timer=setTimeout(function(){if(!done){cleanup();reject(new Error('المزامنة بطيئة — سيتم إعادة المحاولة تلقائيًا'))}},timeoutMs||30000);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 185,
+      "text": "setTimeout(function(){try{form.remove();iframe.remove()}catch(e){}resolve({ok:true})},2300);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 260,
+      "text": "syncTimer=setTimeout(function(){pushPending(false)},delay);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 267,
+      "text": "retryTimer=setTimeout(function(){pushPending(false)},delay);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 275,
+      "text": "if(tries<3)return new Promise(function(resolve){setTimeout(resolve,1300)}).then(function(){return confirmUploaded(expectedHash,tries+1)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 283,
+      "text": "await new Promise(function(resolve){setTimeout(resolve,1800)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 300,
+      "text": "await new Promise(function(resolve){setTimeout(resolve,1600)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 403,
+      "text": "var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='HaydarPack_Backup_'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 427,
+      "text": "clearInterval(metaTimer);metaTimer=setInterval(function(){if(pendingData())pushPending(false);else checkMeta(false)},20000);"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 428,
+      "text": "try{if(typeof autoRefreshCurrentMonth==='function'){setInterval(autoRefreshCurrentMonth,60*60*1000);setTimeout(autoRefreshCurrentMonth,1500)}}catch(e){}"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 432,
+      "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){ensureSyncPanel();updateUI();onePage()},0);return r};"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 455,
+      "text": "window.addEventListener('error',function(){setTimeout(function(){hideLoading();onePage()},400)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 456,
+      "text": "window.addEventListener('unhandledrejection',function(){setTimeout(function(){hideLoading();onePage()},400)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 457,
+      "text": "document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,80);setTimeout(function(){hideLoading();onePage()},5000)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 458,
+      "text": "window.addEventListener('load',function(){setTimeout(function(){hideLoading();onePage();if(!booted)boot()},1000)});"
+    },
+    {
+      "file": "assets/js/12-sync-import.js",
+      "line": 459,
+      "text": "setTimeout(function(){hideLoading();onePage();if(!booted)boot()},6500);"
+    },
+    {
+      "file": "assets/js/13-stage6-features.js",
+      "line": 224,
+      "text": "setTimeout(function(){addClientButtons(cid)},10);"
+    },
+    {
+      "file": "assets/js/13-stage6-features.js",
+      "line": 230,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/13-stage6-features.js",
+      "line": 244,
+      "text": "setTimeout(renderProfitInsights,0);"
+    },
+    {
+      "file": "assets/js/14-v35-fixes.js",
+      "line": 92,
+      "text": "setTimeout(function(){try{HP_autoArchiveDelivered(); updateOrderCount()}catch(e){}},600);"
+    },
+    {
+      "file": "assets/js/14-v35-fixes.js",
+      "line": 116,
+      "text": "function baseDoc(title,no,meta,head,body,totals,extra){return '<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><meta charset=\"utf-8\"><title>'+esc(no+' - '+title+' - Haydar Pack')+'<"
+    },
+    {
+      "file": "assets/js/15-v36-feature-integrity.js",
+      "line": 134,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 73,
+      "text": "timer=setTimeout(function(){if(!done){cleanup();reject(new Error('الاتصال بطيء — لم يتم حذف أي بيانات'))}},timeoutMs||30000);"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 173,
+      "text": "setTimeout(function(){saveSafeSnapshot('after-save')},300);"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 212,
+      "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){injectGuardPanel();updateGuardUI()},100);return r};"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 214,
+      "text": "window.openSettings=function(){var r=oldOpenSettings?oldOpenSettings.apply(this,arguments):undefined;setTimeout(function(){injectGuardPanel();updateGuardUI()},120);return r};"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 219,
+      "text": "setInterval(function(){saveSafeSnapshot('auto-interval')},60000);"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 220,
+      "text": "setTimeout(function(){try{injectGuardPanel()}catch(e){}},1200);"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 221,
+      "text": "setTimeout(function(){"
+    },
+    {
+      "file": "assets/js/16-v39-data-protection-lock.js",
+      "line": 227,
+      "text": "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,900)});else setTimeout(boot,900);"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 25,
+      "text": "function jsonp(action,params,timeoutMs){return new Promise(function(resolve,reject){var url=backendUrl(),cb='hpV40_'+Date.now()+'_'+Math.floor(Math.random()*1000000),q='action='+en"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 26,
+      "text": "function postForm(action,fields,waitMs){return new Promise(function(resolve){var url=backendUrl(),iframeName='hp_v40_img_post_'+Date.now();var iframe=document.createElement('iframe"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 43,
+      "text": "function migrateImagesInDB(reason){var d=db(),changed=false;if(!d||typeof d!=='object')return false;['payments','transfers'].forEach(function(k){(d[k]||[]).forEach(function(x){if(x"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 63,
+      "text": "window.openOrderForm=function(id){var r=oldOpenOrderForm.apply(this,arguments);setTimeout(function(){try{if(currentDesignImage&&currentDesignImage.id&&!currentDesignImage.data){var"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 66,
+      "text": "function scheduleImageUpload(delay){clearTimeout(uploadTimer);uploadTimer=setTimeout(processQueue,delay==null?1800:delay)}"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 73,
+      "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){injectPanel();updateImagePanel()},150);return r};"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 75,
+      "text": "window.openSettings=function(){var r=oldOpenSettings?oldOpenSettings.apply(this,arguments):undefined;setTimeout(function(){injectPanel();updateImagePanel()},180);return r};"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 76,
+      "text": "function boot(){try{migrateImagesInDB('boot')}catch(e){console.warn(e)}scheduleImageUpload(2500);setInterval(function(){try{migrateImagesInDB('interval');processQueue()}catch(e){}}"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 79,
+      "text": "document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,900)});"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 80,
+      "text": "window.addEventListener('load',function(){setTimeout(boot,1200)});"
+    },
+    {
+      "file": "assets/js/17-v40-image-separation.js",
+      "line": 81,
+      "text": "setTimeout(boot,2500);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 65,
+      "text": "timer=setTimeout(function(){if(!done){cleanup();reject(new Error('الاتصال بطيء — لم يتم حذف أي بيانات'))}},timeoutMs||30000);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 77,
+      "text": "setTimeout(function(){try{form.remove();iframe.remove()}catch(e){}resolve({ok:true})},waitMs||2600);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 262,
+      "text": "if(!simpleTimer) simpleTimer=setInterval(updateSimpleUI,3000);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 263,
+      "text": "setTimeout(function(){loadBackupStatus(false).catch(function(){})},2500);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 266,
+      "text": "window.openSync=function(){var r=oldOpenSync?oldOpenSync.apply(this,arguments):undefined;setTimeout(function(){ensureSimplePanel();hideLegacySyncUI();loadBackupStatus(false).catch("
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 268,
+      "text": "if(typeof oldSetSyncState==='function')window.setSyncState=function(){var r=oldSetSyncState.apply(this,arguments);setTimeout(updateSimpleUI,0);return r};"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 269,
+      "text": "document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,1200)});"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 270,
+      "text": "window.addEventListener('load',function(){setTimeout(boot,1600)});"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 271,
+      "text": "setTimeout(boot,2800);"
+    },
+    {
+      "file": "assets/js/18-v41-backup-center-simple-ui.js",
+      "line": 272,
+      "text": "// V41.1 stable fix: no whole-page MutationObserver."
+    }
+  ]
+}
