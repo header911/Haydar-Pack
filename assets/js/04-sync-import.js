@@ -1,4 +1,4 @@
-/* Haydar Pack V47 cleanup bundle: 04-sync-import.js
+/* Haydar Pack V47.1 status-sync bundle: 04-sync-import.js
    Sources: 12-sync-import.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -17,7 +17,7 @@
 (function(){
   'use strict';
 
-  var VERSION='47.0.0-core-base-cleanup';
+  var VERSION='47.1.0-status-sync-guard';
   var LOCAL_KEY='hayder_bags_app';
   var META_KEY='hayder_pack_sync_meta_v37';
   var PENDING_KEY='hayder_pack_sync_pending_v37';
@@ -187,7 +187,7 @@
       var url=backendUrl(), iframeName='hp_v37_post_'+Date.now();
       var iframe=document.createElement('iframe');iframe.name=iframeName;iframe.style.display='none';
       var form=document.createElement('form');form.method='POST';form.action=url;form.target=iframeName;form.style.display='none';form.acceptCharset='UTF-8';
-      fields=fields||{};fields.action=action;fields.appVersion='47.0.0-core-base-cleanup';fields.siteVersion='47coreclean';
+      fields=fields||{};fields.action=action;fields.appVersion='47.1.0-status-sync-guard';fields.siteVersion='47_1statusfix';
       Object.keys(fields).forEach(function(k){var t=document.createElement('textarea');t.name=k;t.value=String(fields[k]==null?'':fields[k]);form.appendChild(t)});
       document.body.appendChild(iframe);document.body.appendChild(form);form.submit();
       setTimeout(function(){try{form.remove();iframe.remove()}catch(e){}resolve({ok:true})},2300);
@@ -459,6 +459,15 @@
   window.HP_V37_SYNC={version:VERSION,backendUrl:backendUrl,push:pushPending,pull:pull,checkMeta:checkMeta,markPending:markPending,dataHash:dataHash};
   window.addEventListener('online',function(){setSync('work','رجع الإنترنت — جاري رفع أي تعديلات تلقائيًا');pushPending(false)});
   window.addEventListener('focus',function(){if(pendingData())pushPending(false);else checkMeta(false)});
+  window.addEventListener('beforeunload',function(e){
+    try{
+      if(pendingData()){
+        e.preventDefault();
+        e.returnValue='يوجد تعديل محفوظ على الجهاز ولم يتم تأكيده على Google بعد. انتظر حتى تظهر حالة متصل ومحفوظ.';
+        return e.returnValue;
+      }
+    }catch(_){}
+  });
   document.addEventListener('visibilitychange',function(){if(!document.hidden){if(pendingData())pushPending(false);else checkMeta(false)}});
   window.addEventListener('error',function(){setTimeout(function(){hideLoading();onePage()},400)});
   window.addEventListener('unhandledrejection',function(){setTimeout(function(){hideLoading();onePage()},400)});

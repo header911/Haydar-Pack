@@ -1,4 +1,4 @@
-/* Haydar Pack V47 cleanup bundle: 02-business-legacy.js
+/* Haydar Pack V47.1 status-sync bundle: 02-business-legacy.js
    Sources: 03-client-edit.js, 04-finance-capital-docs.js, 05-safe-import-boot.js, 06-delete-doclogo-sync.js, 07-doc-client-numbering.js, 08-doc-header-client-profit.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 

@@ -1,4 +1,4 @@
-/* Haydar Pack V47 cleanup bundle: 06-data-protection-images-backup.js
+/* Haydar Pack V47.1 status-sync bundle: 06-data-protection-images-backup.js
    Sources: 16-v39-data-protection-lock.js, 17-v40-image-separation.js, 18-v41-backup-center-simple-ui.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -193,7 +193,7 @@
     saveSafeSnapshot('before-safe-reload');
     try{await cloudPreflight(true)}catch(e){toastSafe((e&&e.message)||'فشل فحص الأمان — سيتم إعادة تحميل الصفحة فقط بدون مسح')}
     var base=location.href.split('?')[0];
-    location.href=base+'?v=47coreclean&safeReload='+Date.now();
+    location.href=base+'?v=47_1statusfix&safeReload='+Date.now();
   };
   function panelHtml(){
     var c=counts(currentDB()), snap=readSafeSnapshot(), sc=snap&&snap.counts;
@@ -338,8 +338,8 @@
    Scope: sync/backup UI only. Does not alter clients/orders/invoices/calculations. */
 (function(){
   'use strict';
-  var VERSION='47.0.0-core-base-cleanup';
-  var SITE_VERSION='47coreclean';
+  var VERSION='47.1.0-status-sync-guard';
+  var SITE_VERSION='47_1statusfix';
   var LOCAL_KEY='hayder_bags_app';
   var META_KEY='hayder_pack_sync_meta_v37';
   var PENDING_KEY='hayder_pack_sync_pending_v37';

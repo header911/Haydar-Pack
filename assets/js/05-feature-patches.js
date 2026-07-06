@@ -1,4 +1,4 @@
-/* Haydar Pack V47 core cleanup bundle: 05-feature-patches.js
+/* Haydar Pack V47.1 status-sync bundle: 05-feature-patches.js
    Sources kept: Stage6 settings/delete-log/profit insights + V35 docs/orders/receipts fixes.
    Removed: duplicate legacy client render/detail/form overrides now owned only by 07-clients-final.js. */
 
@@ -18,7 +18,7 @@
 */
 (function(){
   'use strict';
-  var HP_STAGE6_VERSION='V47_CORE_CLEANUP';
+  var HP_STAGE6_VERSION='V47.1_CORE_CLEANUP';
 
   function byId(id){return document.getElementById(id)}
   function arr(x){return Array.isArray(x)?x:[]}
@@ -165,7 +165,7 @@
     openDrawer('dr-settings'); renderDeleteLogArea();
   };
   window.hpStage6HardReload=function(){
-    var base=location.href.split('?')[0]; location.href=base+'?v=47coreclean&safeReload='+Date.now();
+    var base=location.href.split('?')[0]; location.href=base+'?v=47_1statusfix&safeReload='+Date.now();
   };
   if(!window.manualSyncNow){
     window.manualSyncNow=function(){
@@ -177,7 +177,7 @@
     };
   }
 
-  /* V47 cleanup: clients page UI is now owned by assets/js/07-clients-final.js only.
+  /* V47.1 cleanup: clients page UI is now owned by assets/js/07-clients-final.js only.
      Removed duplicate Stage6 renderClients/openClientDetail/openClientForm wrappers to prevent
      double rendering, duplicate buttons and future maintenance confusion. */
 
@@ -267,12 +267,27 @@
     if(changed){try{save()}catch(e){try{localStorage.setItem('hayder_bags_app',JSON.stringify(DB))}catch(_){}}}
     return changed;
   };
+  function forceStatusSync(reason){
+    try{ if(typeof save==='function') save(false); }catch(e){ console.error(e); }
+    try{
+      if(typeof setSyncState==='function') setSyncState('work','تم حفظ حالة الأوردر محليًا — جاري تثبيتها على Google الآن');
+      if(window.HP_V37_SYNC && typeof window.HP_V37_SYNC.push==='function'){
+        setTimeout(function(){try{window.HP_V37_SYNC.push(false)}catch(e){}},120);
+        setTimeout(function(){try{window.HP_V37_SYNC.push(false)}catch(e){}},4500);
+      }else if(typeof window.manualSync==='function'){
+        setTimeout(function(){try{window.manualSync()}catch(e){}},250);
+      }
+    }catch(e){console.warn('status force sync skipped',e)}
+  }
+
   var oldChange=window.changeOrderStatus;
   window.changeOrderStatus=function(id,st){
-    if(typeof oldChange==='function') oldChange(id,st); else {var o=arr('orders').find(function(x){return x.id===id}); if(o)o.status=st;}
+    var before=(arr('orders').find(function(x){return x.id===id})||{}).status||'';
+    if(typeof oldChange==='function') oldChange(id,st); else {var oo=arr('orders').find(function(x){return x.id===id}); if(oo)oo.status=st;}
     var o=arr('orders').find(function(x){return x.id===id});
     var archived=markDeliveredArchived(o);
-    if(archived){try{save()}catch(e){} try{toast('تم التسليم ونقل الأوردر للأرشيف تلقائيًا')}catch(e){}}
+    if(o && (before!==st || archived)) forceStatusSync('order-status-change');
+    if(archived){try{toast('تم التسليم ونقل الأوردر للأرشيف تلقائيًا')}catch(e){}}
     try{refreshAll()}catch(e){try{renderOrders();renderHome()}catch(_){}}
     try{if(byId('dr-order-detail')&&byId('dr-order-detail').classList.contains('open')){closeDrawer('dr-order-detail')}}catch(e){}
   };
@@ -357,5 +372,5 @@
 
 /* ===== END SOURCE: 14-v35-fixes.js ===== */
 
-/* V47 cleanup: removed legacy 15-v36-feature-integrity.js block.
+/* V47.1 cleanup: removed legacy 15-v36-feature-integrity.js block.
    Its client responsibilities were replaced by 07-clients-final.js; auto-archive is kept in V35 fixes. */

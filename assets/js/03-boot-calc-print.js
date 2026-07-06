@@ -1,4 +1,4 @@
-/* Haydar Pack V47 cleanup bundle: 03-boot-calc-print.js
+/* Haydar Pack V47.1 status-sync bundle: 03-boot-calc-print.js
    Sources: 09-boot-guard.js, 10-calculations.js, 11-printing.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
