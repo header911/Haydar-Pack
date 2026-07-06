@@ -1,4 +1,4 @@
-/* Haydar Pack V47.1 status-sync bundle: 06-data-protection-images-backup.js
+/* Haydar Pack V48 error-log-stability bundle: 06-data-protection-images-backup.js
    Sources: 16-v39-data-protection-lock.js, 17-v40-image-separation.js, 18-v41-backup-center-simple-ui.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -193,7 +193,7 @@
     saveSafeSnapshot('before-safe-reload');
     try{await cloudPreflight(true)}catch(e){toastSafe((e&&e.message)||'فشل فحص الأمان — سيتم إعادة تحميل الصفحة فقط بدون مسح')}
     var base=location.href.split('?')[0];
-    location.href=base+'?v=47_1statusfix&safeReload='+Date.now();
+    location.href=base+'?v=48stableguard&safeReload='+Date.now();
   };
   function panelHtml(){
     var c=counts(currentDB()), snap=readSafeSnapshot(), sc=snap&&snap.counts;
@@ -338,8 +338,8 @@
    Scope: sync/backup UI only. Does not alter clients/orders/invoices/calculations. */
 (function(){
   'use strict';
-  var VERSION='47.1.0-status-sync-guard';
-  var SITE_VERSION='47_1statusfix';
+  var VERSION='48.0.0-error-log-stability';
+  var SITE_VERSION='48stableguard';
   var LOCAL_KEY='hayder_bags_app';
   var META_KEY='hayder_pack_sync_meta_v37';
   var PENDING_KEY='hayder_pack_sync_pending_v37';
@@ -613,3 +613,134 @@
 
 
 /* ===== END SOURCE: 18-v41-backup-center-simple-ui.js ===== */
+
+
+/* ===== BEGIN V48 ERROR LOG & STABILITY GUARD ===== */
+(function(){
+  'use strict';
+  var VERSION='48.0.0-error-log-stability';
+  var SITE_VERSION='48stableguard';
+  var LOG_KEY='hayder_pack_error_log_v48';
+  var MAX_LOGS=80;
+  var wrapped=false;
+  function $(id){return document.getElementById(id)}
+  function now(){return new Date().toISOString()}
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]})}
+  function readLogs(){try{return JSON.parse(localStorage.getItem(LOG_KEY)||'[]')||[]}catch(e){return []}}
+  function writeLogs(list){try{localStorage.setItem(LOG_KEY,JSON.stringify((list||[]).slice(0,MAX_LOGS)))}catch(e){}}
+  function counts(){try{var d=window.DB||{};return {clients:(d.clients||[]).length,factories:(d.factories||[]).length,orders:(d.orders||[]).length,payments:(d.payments||[]).length,transfers:(d.transfers||[]).length,expenses:(d.expenses||[]).length}}catch(e){return {}}}
+  function msgFrom(err){try{return (err&&err.message)||String(err&&err.reason||err)||'Unknown error'}catch(e){return 'Unknown error'}}
+  function stackFrom(err){try{return String((err&&err.stack)||(err&&err.reason&&err.reason.stack)||'').slice(0,3000)}catch(e){return ''}}
+  function addLog(kind,err,ctx,extra){
+    var entry={
+      at:now(),
+      version:VERSION,
+      siteVersion:SITE_VERSION,
+      kind:kind||'error',
+      context:ctx||'',
+      message:msgFrom(err),
+      stack:stackFrom(err),
+      url:String(location.href||''),
+      online:!!navigator.onLine,
+      counts:counts(),
+      extra:extra||null
+    };
+    var list=readLogs(); list.unshift(entry); writeLogs(list); updateWidget();
+    try{console.warn('[Haydar Pack V48 captured]',entry)}catch(e){}
+    return entry;
+  }
+  function toastSafe(m){try{if(typeof toast==='function')toast(m)}catch(e){}}
+  window.hpV48LogError=function(kind,err,ctx,extra){return addLog(kind,err,ctx,extra)};
+  window.addEventListener('error',function(e){
+    addLog('window.error', e.error||e.message, 'global', {source:e.filename||'',line:e.lineno||0,col:e.colno||0});
+  });
+  window.addEventListener('unhandledrejection',function(e){
+    addLog('unhandled.promise', e.reason||'Unhandled promise rejection', 'promise', null);
+  });
+  function injectStyle(){
+    if($('hp-v48-style'))return;
+    var st=document.createElement('style'); st.id='hp-v48-style';
+    st.textContent='\n.hp-v48-card{border:4px solid #000;border-radius:18px;background:#f7fff8;padding:14px;margin:12px 0;box-shadow:0 3px 0 #000;font-weight:900}\n.hp-v48-head{font-size:19px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:8px}\n.hp-v48-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.hp-v48-mini{border:3px solid #000;border-radius:14px;background:#fff;padding:10px;min-height:54px}.hp-v48-mini b{display:block;font-size:13px;color:#123;margin-bottom:5px}.hp-v48-mini span{font-size:14px;word-break:break-word}\n.hp-v48-log{direction:ltr;text-align:left;background:#0b1020;color:#e8f0ff;border-radius:14px;padding:10px;max-height:260px;overflow:auto;white-space:pre-wrap;font-size:12px;margin-top:10px}\n.hp-v48-ok{color:#077a2d}.hp-v48-warn{color:#a15c00}.hp-v48-bad{color:#9b111e}\n@media(max-width:520px){.hp-v48-grid{grid-template-columns:1fr}}\n';
+    document.head.appendChild(st);
+  }
+  function statusText(){
+    var logs=readLogs();
+    var last=logs[0];
+    var pending=0;
+    try{ if(window.HP_V37_SYNC){ var p=localStorage.getItem('hayder_pack_sync_pending_v37'); pending=p?1:0; } }catch(e){}
+    var cls=logs.length?'hp-v48-warn':'hp-v48-ok';
+    return {logs:logs,last:last,pending:pending,cls:cls};
+  }
+  function logSummaryText(){
+    var logs=readLogs();
+    if(!logs.length)return 'No errors logged.';
+    return logs.slice(0,20).map(function(x,i){
+      return '#'+(i+1)+' ['+(x.at||'')+'] '+(x.kind||'error')+' | '+(x.context||'')+'\n'+(x.message||'')+'\n'+(x.stack||'').slice(0,900)+'\n';
+    }).join('\n---\n');
+  }
+  function widgetHtml(){
+    var s=statusText(), last=s.last;
+    return '<div id="hp-v48-stability-widget" class="hp-v48-card">'
+      +'<div class="hp-v48-head"><i class="ti ti-activity-heartbeat"></i> حالة النظام V48</div>'
+      +'<div class="hp-v48-grid">'
+      +'<div class="hp-v48-mini"><b>الأخطاء المسجلة</b><span id="hp-v48-count" class="'+s.cls+'">'+esc(String(s.logs.length))+'</span></div>'
+      +'<div class="hp-v48-mini"><b>آخر خطأ</b><span id="hp-v48-last">'+esc(last?(last.message||'—'):'لا يوجد')+'</span></div>'
+      +'<div class="hp-v48-mini"><b>الاتصال</b><span id="hp-v48-online">'+esc(navigator.onLine?'متصل':'أوفلاين')+'</span></div>'
+      +'<div class="hp-v48-mini"><b>حركات معلقة</b><span id="hp-v48-pending">'+esc(String(s.pending))+'</span></div>'
+      +'</div>'
+      +'<div class="hp-v41-actions"><button class="btn" onclick="hpV48ToggleLog()"><i class="ti ti-list-details"></i> عرض سجل الأخطاء</button><button class="btn blue" onclick="hpV48DownloadLog()"><i class="ti ti-download"></i> تنزيل التقرير</button><button class="btn amber" onclick="hpV48ClearLog()"><i class="ti ti-trash"></i> مسح السجل</button></div>'
+      +'<pre id="hp-v48-log-box" class="hp-v48-log" style="display:none"></pre>'
+      +'</div>';
+  }
+  function ensureWidget(){
+    injectStyle();
+    var host=$('hp-v41-sync-ui') || document.querySelector('#dr-sync .drawer');
+    if(!host)return;
+    if(!$('hp-v48-stability-widget')){
+      var working=$('hp-v41-working');
+      if(working)working.insertAdjacentHTML('afterend', widgetHtml()); else host.insertAdjacentHTML('beforeend', widgetHtml());
+    }
+    updateWidget();
+  }
+  function updateWidget(){
+    var s=statusText(), last=s.last, el;
+    if((el=$('hp-v48-count'))){el.textContent=String(s.logs.length);el.className=s.cls;}
+    if((el=$('hp-v48-last')))el.textContent=last?(last.message||'—'):'لا يوجد';
+    if((el=$('hp-v48-online')))el.textContent=navigator.onLine?'متصل':'أوفلاين';
+    if((el=$('hp-v48-pending')))el.textContent=String(s.pending);
+    if((el=$('hp-v48-log-box'))&&el.style.display!=='none')el.textContent=logSummaryText();
+  }
+  window.hpV48ToggleLog=function(){ensureWidget();var box=$('hp-v48-log-box');if(!box)return;var show=box.style.display==='none'||!box.style.display;box.style.display=show?'block':'none';if(show)box.textContent=logSummaryText();};
+  window.hpV48ClearLog=function(){if(!confirm('مسح سجل الأخطاء المحلي فقط؟ الداتا لن تتأثر.'))return;writeLogs([]);updateWidget();toastSafe('تم مسح سجل الأخطاء')};
+  window.hpV48DownloadLog=function(){
+    var report='Haydar Pack V48 Error Report\nGenerated: '+now()+'\nURL: '+location.href+'\nOnline: '+navigator.onLine+'\nCounts: '+JSON.stringify(counts())+'\n\n'+logSummaryText();
+    try{var blob=new Blob([report],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='haydar-pack-error-report-'+Date.now()+'.txt';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}catch(e){addLog('download.error',e,'hpV48DownloadLog');}
+  };
+  function fallbackRender(name){
+    var targets={renderOrders:'orders-list',renderClients:'clients-list',renderFactories:'factories-list',renderReports:'rep-stats',renderHome:'h-status'};
+    var id=targets[name], el=id&&$(id); if(!el)return;
+    el.innerHTML='<div class="alert amber" style="border-width:4px"><b>حصل خطأ عرض مؤقت.</b><br>الداتا لم يتم حذفها. افتح المزامنة والحماية ثم نزّل تقرير الأخطاء أو اعمل Refresh آمن.</div>';
+  }
+  function wrap(name,opts){
+    var old=window[name]; if(typeof old!=='function'||old.__hpv48Wrapped)return;
+    var w=function(){try{return old.apply(this,arguments)}catch(e){addLog('guarded.function',e,name,{args:Array.prototype.slice.call(arguments,0,3).map(function(a){return String(a).slice(0,120)})});fallbackRender(name);toastSafe('حصل خطأ مؤقت — اتسجل في حالة النظام');if(opts&&opts.rethrow)throw e;return null;}};
+    w.__hpv48Wrapped=true; window[name]=w;
+  }
+  function wrapCriticalFunctions(){
+    if(wrapped)return; wrapped=true;
+    ['refreshAll','renderHome','renderOrders','renderClients','renderFactories','renderReports','openOrderDetail','openClientDetail','openFactoryDetail','openSync'].forEach(function(n){wrap(n)});
+    var oldOpen=window.openSync;
+    if(typeof oldOpen==='function'&&!oldOpen.__hpv48OpenWrapped){
+      window.openSync=function(){var r;try{r=oldOpen.apply(this,arguments)}catch(e){addLog('openSync.error',e,'openSync');try{openDrawer('dr-sync')}catch(_){}}setTimeout(ensureWidget,350);setTimeout(updateWidget,1000);return r};
+      window.openSync.__hpv48OpenWrapped=true;
+    }
+  }
+  function boot(){injectStyle();wrapCriticalFunctions();ensureWidget();updateWidget();}
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,1600)});
+  window.addEventListener('load',function(){setTimeout(boot,1800)});
+  window.addEventListener('online',function(){setTimeout(updateWidget,200)});
+  window.addEventListener('offline',function(){setTimeout(updateWidget,200)});
+  setTimeout(boot,3000);
+  window.HP_V48_STABILITY={version:VERSION,siteVersion:SITE_VERSION,readLogs:readLogs,log:addLog,clear:function(){writeLogs([]);updateWidget()},update:updateWidget};
+})();
+/* ===== END V48 ERROR LOG & STABILITY GUARD ===== */

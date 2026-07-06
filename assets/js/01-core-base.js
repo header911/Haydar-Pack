@@ -1,4 +1,4 @@
-/* Haydar Pack V47.1 status-sync bundle: 01-core-base.js
+/* Haydar Pack V48 error-log-stability bundle: 01-core-base.js
    Sources: cleaned 01-core.js + 02-pwa-register.js
    Removed obsolete V9/V10 sync bridges and old client sort override. */
 
@@ -14,7 +14,7 @@ var DB = {clients:[],factories:[],orders:[],payments:[],transfers:[],expenses:[]
 var selStatus='all', selFac='all', selPeriod='all', homePeriod='month', selMonth=curMonth(), repPeriod='month', selRepMonth=curMonth();
 var activePage='home';
 var lastReceiptPreview = {};
-/* V47.1 cleanup: removed old Google Drive API globals; Apps Script sync is used instead. */
+/* V48 cleanup: removed old Google Drive API globals; Apps Script sync is used instead. */
 function uid(){ DB._id=(DB._id||1)+1; return 'i'+DB._id }
 function g(id){ return document.getElementById(id) }
 function safe(v){ return String(v??'').replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}) }
@@ -1228,7 +1228,7 @@ function openOrderDetail(id){
 // ================= V8 DATA SAFETY + LOCAL GOOGLE DRIVE FOLDER BACKUP =================
 (function(){
   'use strict';
-  var HP_APP_VERSION='47.1.0-status-sync-guard';
+  var HP_APP_VERSION='48.0.0-error-log-stability';
   var HP_SCHEMA_VERSION=10;
   var HP_LOCAL_KEY='hayder_bags_app';
   var HP_CURRENT_FILE='HayderPack_Current_Data.json';
@@ -1431,10 +1431,10 @@ function openOrderDetail(id){
 })();
 
 
-/* V47.1 cleanup: removed obsolete V9 google.script.run cloud sync block.
+/* V48 cleanup: removed obsolete V9 google.script.run cloud sync block.
    Current sync is owned by assets/js/04-sync-import.js and protected by 06-data-protection-images-backup.js. */
 
-/* V47.1 cleanup: removed old client render/sort override.
+/* V48 cleanup: removed old client render/sort override.
    Clients page is owned by assets/js/07-clients-final.js. */
 
 /* ===== DESKTOP DRAWER BACK BAR V10 ===== */
@@ -1475,7 +1475,7 @@ function openOrderDetail(id){
 })();
 
 
-/* V47.1 cleanup: removed obsolete V10 PWA/offline sync bridge.
+/* V48 cleanup: removed obsolete V10 PWA/offline sync bridge.
    Local-first Apps Script sync is owned by assets/js/04-sync-import.js. */
 
 /* V37: legacy boot disabled to prevent old Google download from overwriting local unsynced changes. */

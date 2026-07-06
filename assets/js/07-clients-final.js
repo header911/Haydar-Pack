@@ -1,4 +1,4 @@
-/* Haydar Pack V47.1 status-sync bundle: 07-clients-final.js
+/* Haydar Pack V48 error-log-stability bundle: 07-clients-final.js
    Sources: 19-v43-clients-cleanup.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -17,7 +17,7 @@
 */
 (function(){
   'use strict';
-  var VERSION='47.1.0-status-sync-guard';
+  var VERSION='48.0.0-error-log-stability';
   var state={filter:'all',sort:'activity'};
 
   function $(id){return document.getElementById(id)}

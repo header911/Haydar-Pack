@@ -1,4 +1,4 @@
-/* Haydar Pack V47.1 status-sync bundle: 05-feature-patches.js
+/* Haydar Pack V48 error-log-stability bundle: 05-feature-patches.js
    Sources kept: Stage6 settings/delete-log/profit insights + V35 docs/orders/receipts fixes.
    Removed: duplicate legacy client render/detail/form overrides now owned only by 07-clients-final.js. */
 
@@ -18,7 +18,7 @@
 */
 (function(){
   'use strict';
-  var HP_STAGE6_VERSION='V47.1_CORE_CLEANUP';
+  var HP_STAGE6_VERSION='V48_STABILITY_GUARD';
 
   function byId(id){return document.getElementById(id)}
   function arr(x){return Array.isArray(x)?x:[]}
@@ -165,7 +165,7 @@
     openDrawer('dr-settings'); renderDeleteLogArea();
   };
   window.hpStage6HardReload=function(){
-    var base=location.href.split('?')[0]; location.href=base+'?v=47_1statusfix&safeReload='+Date.now();
+    var base=location.href.split('?')[0]; location.href=base+'?v=48stableguard&safeReload='+Date.now();
   };
   if(!window.manualSyncNow){
     window.manualSyncNow=function(){
@@ -177,7 +177,7 @@
     };
   }
 
-  /* V47.1 cleanup: clients page UI is now owned by assets/js/07-clients-final.js only.
+  /* V48 cleanup: clients page UI is now owned by assets/js/07-clients-final.js only.
      Removed duplicate Stage6 renderClients/openClientDetail/openClientForm wrappers to prevent
      double rendering, duplicate buttons and future maintenance confusion. */
 
@@ -372,5 +372,5 @@
 
 /* ===== END SOURCE: 14-v35-fixes.js ===== */
 
-/* V47.1 cleanup: removed legacy 15-v36-feature-integrity.js block.
+/* V48 cleanup: removed legacy 15-v36-feature-integrity.js block.
    Its client responsibilities were replaced by 07-clients-final.js; auto-archive is kept in V35 fixes. */
