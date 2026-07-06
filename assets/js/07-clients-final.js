@@ -1,4 +1,4 @@
-/* Haydar Pack V45 cleanup bundle: 07-clients-final.js
+/* Haydar Pack V46 cleanup bundle: 07-clients-final.js
    Sources: 19-v43-clients-cleanup.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -17,7 +17,7 @@
 */
 (function(){
   'use strict';
-  var VERSION='45.0.0-dead-code-cleanup';
+  var VERSION='46.0.0-core-cleanup';
   var state={filter:'all',sort:'activity'};
 
   function $(id){return document.getElementById(id)}
