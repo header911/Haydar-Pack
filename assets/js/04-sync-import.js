@@ -1,4 +1,4 @@
-/* Haydar Pack V46 cleanup bundle: 04-sync-import.js
+/* Haydar Pack V47 cleanup bundle: 04-sync-import.js
    Sources: 12-sync-import.js
    Based on V44.1 Sync Fix; production cleanup without business-logic changes. */
 
@@ -17,7 +17,7 @@
 (function(){
   'use strict';
 
-  var VERSION='46.0.0-core-cleanup';
+  var VERSION='47.0.0-core-base-cleanup';
   var LOCAL_KEY='hayder_bags_app';
   var META_KEY='hayder_pack_sync_meta_v37';
   var PENDING_KEY='hayder_pack_sync_pending_v37';
@@ -187,7 +187,7 @@
       var url=backendUrl(), iframeName='hp_v37_post_'+Date.now();
       var iframe=document.createElement('iframe');iframe.name=iframeName;iframe.style.display='none';
       var form=document.createElement('form');form.method='POST';form.action=url;form.target=iframeName;form.style.display='none';form.acceptCharset='UTF-8';
-      fields=fields||{};fields.action=action;fields.appVersion='46.0.0-core-cleanup';fields.siteVersion='46corecleanup';
+      fields=fields||{};fields.action=action;fields.appVersion='47.0.0-core-base-cleanup';fields.siteVersion='47coreclean';
       Object.keys(fields).forEach(function(k){var t=document.createElement('textarea');t.name=k;t.value=String(fields[k]==null?'':fields[k]);form.appendChild(t)});
       document.body.appendChild(iframe);document.body.appendChild(form);form.submit();
       setTimeout(function(){try{form.remove();iframe.remove()}catch(e){}resolve({ok:true})},2300);
